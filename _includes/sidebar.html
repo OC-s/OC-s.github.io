@@ -1,0 +1,520 @@
+<!doctype html>
+
+<html lang="ko-kr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover"
+    >
+    <!-- Setup Open Graph image -->
+
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+    <meta name="generator" content="Jekyll v4.3.3">
+    <meta property="og:title" content="Getting Started">
+    <meta name="author" content="Cotes Chung">
+    <meta property="og:locale" content="ko_kr">
+    <link rel="canonical" href="http://localhost:4000/posts/getting-started/">
+    <meta property="og:url" content="http://localhost:4000/posts/getting-started/">
+    <meta property="og:site_name" content="오씨네">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2019-08-09T20:55:00+08:00">
+    <meta name="twitter:card" content="summary">
+    <meta property="twitter:title" content="Getting Started">
+    <meta name="twitter:site" content="@twitter_username">
+    <meta name="twitter:creator" content="@cotes2020">
+    <!-- End Jekyll SEO tag -->
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon.png">
+
+    <link rel="manifest" href="/assets/img/favicons/site.webmanifest">
+
+    <link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
+    <meta name="apple-mobile-web-app-title" content="오씨네">
+    <meta name="application-name" content="오씨네">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"
+    >
+
+    <!-- GA -->
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.25.0/dist/tocbot.min.css">
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css"
+    >
+
+    <!-- Manific Popup -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
+
+    <!-- JavaScript -->
+
+    <script type="text/javascript">
+      class ModeToggle {
+        static get MODE_KEY() {
+          return 'mode';
+        }
+        static get MODE_ATTR() {
+          return 'data-mode';
+        }
+        static get DARK_MODE() {
+          return 'dark';
+        }
+        static get LIGHT_MODE() {
+          return 'light';
+        }
+        static get ID() {
+          return 'mode-toggle';
+        }
+
+        constructor() {
+          if (this.hasMode) {
+            if (this.isDarkMode) {
+              if (!this.isSysDarkPrefer) {
+                this.setDark();
+              }
+            } else {
+              if (this.isSysDarkPrefer) {
+                this.setLight();
+              }
+            }
+          }
+
+          let self = this;
+
+          /* always follow the system prefers */
+          this.sysDarkPrefers.addEventListener('change', () => {
+            if (self.hasMode) {
+              if (self.isDarkMode) {
+                if (!self.isSysDarkPrefer) {
+                  self.setDark();
+                }
+              } else {
+                if (self.isSysDarkPrefer) {
+                  self.setLight();
+                }
+              }
+
+              self.clearMode();
+            }
+
+            self.notify();
+          });
+        } /* constructor() */
+
+        get sysDarkPrefers() {
+          return window.matchMedia('(prefers-color-scheme: dark)');
+        }
+
+        get isSysDarkPrefer() {
+          return this.sysDarkPrefers.matches;
+        }
+
+        get isDarkMode() {
+          return this.mode === ModeToggle.DARK_MODE;
+        }
+
+        get isLightMode() {
+          return this.mode === ModeToggle.LIGHT_MODE;
+        }
+
+        get hasMode() {
+          return this.mode != null;
+        }
+
+        get mode() {
+          return sessionStorage.getItem(ModeToggle.MODE_KEY);
+        }
+
+        /* get the current mode on screen */
+        get modeStatus() {
+          if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) {
+            return ModeToggle.DARK_MODE;
+          } else {
+            return ModeToggle.LIGHT_MODE;
+          }
+        }
+
+        setDark() {
+          document.documentElement.setAttribute(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE);
+          sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+        }
+
+        setLight() {
+          document.documentElement.setAttribute(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE);
+          sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+        }
+
+        clearMode() {
+          document.documentElement.removeAttribute(ModeToggle.MODE_ATTR);
+          sessionStorage.removeItem(ModeToggle.MODE_KEY);
+        }
+
+        /* Notify another plugins that the theme mode has changed */
+        notify() {
+          window.postMessage(
+            {
+              direction: ModeToggle.ID,
+              message: this.modeStatus
+            },
+            '*'
+          );
+        }
+
+        flipMode() {
+          if (this.hasMode) {
+            if (this.isSysDarkPrefer) {
+              if (this.isLightMode) {
+                this.clearMode();
+              } else {
+                this.setLight();
+              }
+            } else {
+              if (this.isDarkMode) {
+                this.clearMode();
+              } else {
+                this.setDark();
+              }
+            }
+          } else {
+            if (this.isSysDarkPrefer) {
+              this.setLight();
+            } else {
+              this.setDark();
+            }
+          }
+
+          this.notify();
+        } /* flipMode() */
+      } /* ModeToggle */
+
+      const modeToggle = new ModeToggle();
+    </script>
+
+    <!-- 이동시 여백, 폰트등 ,이미지에 호버 효과 추가 -->
+    <style>
+      #intro,
+      #skills,
+      #projects_pc_main,
+      #extra,
+      #education {
+        padding-top: 20px;
+      }
+
+      @font-face {
+        font-family: 'RIDIBatang';
+        src: url('../assets/img/favicons/RIDIBatang.otf') format('opentype'); /* OTF 파일의 경로를 지정합니다. */
+      }
+
+      h1 {
+        font-family: 'Source Sans Pro';
+        color: rgba(0, 150, 255, 0.5);
+        font-weight: 900;
+        font-size: 36px;
+      }
+      li,
+      td,
+      th,
+      p,
+      span {
+        font-family: 'RIDIBatang';
+      }
+
+      .hoverable-image {
+        width: 130px;
+        height: 50px;
+        margin: 5px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .hoverable-image:hover {
+        transform: scale(1.2);
+        box-shadow: 0 0 20px rgba(0, 150, 255, 0.5);
+        transition: transform 0.3s ease;
+      }
+
+      .content section p a {
+        text-decoration: none;
+      }
+
+      .horizontal-line {
+        border-top: 2px solid rgba(0, 150, 255, 0.1);
+        margin: 20px 0;
+        border-radius: 1px;
+      }
+
+      .page {
+        page: a4sheet;
+        page-break-after: always;
+      }
+    </style>
+
+    <!-- 소개css -->
+    <style>
+      .image-with-text {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
+
+      .image-with-text img {
+        margin-right: 10px;
+      }
+
+      .image-with-text ul {
+        list-style-type: none; /* 리스트의 기본 마커 제거 */
+        padding: 0; /* 리스트의 내부 패딩 제거 */
+      }
+
+      .image-with-text ul li:before {
+        content: '-'; /* 각 항목 앞에 하이픈 추가 */
+        margin-right: 5px; /* 하이픈과 텍스트 사이 간격 설정 */
+      }
+
+      #url-list a {
+        color: #00008b;
+        font-weight: bold;
+        text-decoration: none;
+        position: relative;
+        display: inline-block;
+        border-radius: 5px;
+      }
+
+      #url-list a::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: rgba(60, 100, 244, 0.3);
+        border-radius: 5px;
+        z-index: -1;
+        transition: width 0.5s ease;
+      }
+
+      #url-list a:hover::before {
+        width: 100%;
+      }
+
+      .ul_margin {
+        margin-left: 10px;
+      }
+
+      .icon-zoom:hover {
+        color: #d2603a !important;
+        animation: scale-up 0.5s ease forwards, shake 0.5s ease infinite;
+      }
+
+      /* shake 애니메이션 키 프레임 */
+      @keyframes shake {
+        0% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-5px);
+        } /* 좌측으로 흔들림 */
+        50% {
+          transform: translateX(5px);
+        } /* 우측으로 흔들림 */
+        75% {
+          transform: translateX(-5px);
+        } /* 다시 좌측으로 흔들림 */
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes scale-up {
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(3);
+        }
+      }
+    </style>
+
+    <!-- 테이블 관련 -->
+    <style>
+      .no-side-borders,
+      .no-side-borders th,
+      .no-side-borders td {
+        border-left: 0;
+        border-right: 0;
+      }
+      .no-side-borders {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      .no-side-borders th,
+      .no-side-borders td {
+        border-bottom: 1px solid #ddd;
+        border: 1px solid #dddddd;
+        padding: 8px;
+        text-align: left;
+      }
+      .no-side-borders th {
+        background-color: #f2f2f2;
+        text-align: center;
+      }
+
+      .no-side-borders tr th:first-child,
+      .no-side-borders tr td:first-child {
+        border-left: none;
+      }
+
+      .no-side-borders tr th:last-child,
+      .no-side-borders tr td:last-child {
+        border-right: none;
+      }
+
+      .image-cell {
+        width: 600px;
+        height: 370px;
+        overflow: hidden;
+      }
+
+      .image-cell img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .image-main {
+        width: auto;
+        height: 400px;
+        overflow: hidden;
+      }
+
+      .image-main img {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 사이드바 -->
+    <aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
+      <header class="profile-wrapper">
+        <a href="/" id="avatar" class="rounded-circle"
+          ><img
+            src="../assets/img/favicons/oc2.png"
+            width="112"
+            height="112"
+            alt="avatar"
+            onerror="this.style.display='none'"
+        ></a>
+
+        <h1 class="site-title">
+          <a href="/">오씨네</a>
+        </h1>
+        <p class="site-subtitle fst-italic mb-0">Web Developer</p>
+      </header>
+      <!-- .profile-wrapper -->
+
+      <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
+        <a
+          style="margin-right: 20px"
+          href="https://github.com/OC-s"
+          aria-label="github"
+
+          target="_blank"
+
+          rel="noopener noreferrer"
+        >
+          <i class="fab fa-github fa-2x"></i>
+        </a>
+
+        <a
+          href="javascript:location.href = 'mailto:' + ['dbsgh209','gmail.com'].join('@')"
+          aria-label="email"
+        >
+          <i class="fas fa-envelope fa-2x"></i>
+        </a>
+      </div>
+
+      <!-- 메뉴 -->
+      <nav class="flex-column flex-grow-1 w-100 ps-0">
+        <ul class="nav">
+          <!-- 소개 섹션으로 이동 -->
+          <li class="nav-item">
+            <a href="#intro" class="nav-link">
+              <i class="fa-solid fa-circle-user"></i>
+              <span style="color:  rgba(0, 150, 255, 0.7);">소개</span>
+            </a>
+          </li>
+          <!-- 교육 섹션으로 이동 -->
+          <li class="nav-item">
+            <a href="#education" class="nav-link">
+              <i class="fa-solid fa-pen"></i>
+              <span style="color: rgba(0, 150, 255, 0.7);">교육</span>
+            </a>
+          </li>
+
+          <!-- 기술스택 섹션으로 이동 -->
+          <li class="nav-item">
+            <a href="#skills" class="nav-link">
+              <i class="fa-solid fa-list"></i>
+              <span style="color:  rgba(0, 150, 255, 0.7);">기술스택</span>
+            </a>
+          </li>
+
+          <!-- 프로젝트 섹션으로 이동 -->
+          <li class="nav-item">
+            <a href="#projects_pc_main" class="nav-link">
+              <i class="fa-solid fa-chalkboard"></i>
+              <span style="color:  rgba(0, 150, 255, 0.7);">프로젝트</span>
+            </a>
+          </li>
+
+          <!-- 기타 섹션으로 이동 -->
+          <li class="nav-item">
+            <a href="#extra" class="nav-link">
+              <i class="fa-solid fa-mask"></i>
+              <span style="color:  rgba(0, 150, 255, 0.7);">기타</span>
+            </a>
+          </li>
+          <!-- .nav-item -->
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- 메인content -->
+    <div id="main-wrapper" class="d-flex justify-content-center">
+      <div class="container custom-container d-flex flex-column px-xxl-5">
+        <Footer style="margin-bottom: 130px; border-top-style: none;" />
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1611 @@
+<!doctype html>
+
+<html lang="ko-kr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover"
+    >
+    <!-- Setup Open Graph image -->
+
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+    <meta name="generator" content="Jekyll v4.3.3">
+    <meta property="og:title" content="Getting Started">
+    <meta name="author" content="Cotes Chung">
+    <meta property="og:locale" content="ko_kr">
+    <link rel="canonical" href="http://localhost:4000/posts/getting-started/">
+    <meta property="og:url" content="http://localhost:4000/posts/getting-started/">
+    <meta property="og:site_name" content="오씨네">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2019-08-09T20:55:00+08:00">
+    <meta name="twitter:card" content="summary">
+    <meta property="twitter:title" content="Getting Started">
+    <meta name="twitter:site" content="@twitter_username">
+    <meta name="twitter:creator" content="@cotes2020">
+    <!-- End Jekyll SEO tag -->
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon.png">
+
+    <link rel="manifest" href="/assets/img/favicons/site.webmanifest">
+
+    <link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
+    <meta name="apple-mobile-web-app-title" content="오씨네">
+    <meta name="application-name" content="오씨네">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"
+    >
+
+    <!-- GA -->
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.25.0/dist/tocbot.min.css">
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css"
+    >
+
+    <!-- Manific Popup -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
+
+    <!-- JavaScript -->
+
+    <script type="text/javascript">
+      class ModeToggle {
+        static get MODE_KEY() {
+          return 'mode';
+        }
+        static get MODE_ATTR() {
+          return 'data-mode';
+        }
+        static get DARK_MODE() {
+          return 'dark';
+        }
+        static get LIGHT_MODE() {
+          return 'light';
+        }
+        static get ID() {
+          return 'mode-toggle';
+        }
+
+        constructor() {
+          if (this.hasMode) {
+            if (this.isDarkMode) {
+              if (!this.isSysDarkPrefer) {
+                this.setDark();
+              }
+            } else {
+              if (this.isSysDarkPrefer) {
+                this.setLight();
+              }
+            }
+          }
+
+          let self = this;
+
+          /* always follow the system prefers */
+          this.sysDarkPrefers.addEventListener('change', () => {
+            if (self.hasMode) {
+              if (self.isDarkMode) {
+                if (!self.isSysDarkPrefer) {
+                  self.setDark();
+                }
+              } else {
+                if (self.isSysDarkPrefer) {
+                  self.setLight();
+                }
+              }
+
+              self.clearMode();
+            }
+
+            self.notify();
+          });
+        } /* constructor() */
+
+        get sysDarkPrefers() {
+          return window.matchMedia('(prefers-color-scheme: dark)');
+        }
+
+        get isSysDarkPrefer() {
+          return this.sysDarkPrefers.matches;
+        }
+
+        get isDarkMode() {
+          return this.mode === ModeToggle.DARK_MODE;
+        }
+
+        get isLightMode() {
+          return this.mode === ModeToggle.LIGHT_MODE;
+        }
+
+        get hasMode() {
+          return this.mode != null;
+        }
+
+        get mode() {
+          return sessionStorage.getItem(ModeToggle.MODE_KEY);
+        }
+
+        /* get the current mode on screen */
+        get modeStatus() {
+          if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) {
+            return ModeToggle.DARK_MODE;
+          } else {
+            return ModeToggle.LIGHT_MODE;
+          }
+        }
+
+        setDark() {
+          document.documentElement.setAttribute(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE);
+          sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+        }
+
+        setLight() {
+          document.documentElement.setAttribute(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE);
+          sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+        }
+
+        clearMode() {
+          document.documentElement.removeAttribute(ModeToggle.MODE_ATTR);
+          sessionStorage.removeItem(ModeToggle.MODE_KEY);
+        }
+
+        /* Notify another plugins that the theme mode has changed */
+        notify() {
+          window.postMessage(
+            {
+              direction: ModeToggle.ID,
+              message: this.modeStatus
+            },
+            '*'
+          );
+        }
+
+        flipMode() {
+          if (this.hasMode) {
+            if (this.isSysDarkPrefer) {
+              if (this.isLightMode) {
+                this.clearMode();
+              } else {
+                this.setLight();
+              }
+            } else {
+              if (this.isDarkMode) {
+                this.clearMode();
+              } else {
+                this.setDark();
+              }
+            }
+          } else {
+            if (this.isSysDarkPrefer) {
+              this.setLight();
+            } else {
+              this.setDark();
+            }
+          }
+
+          this.notify();
+        } /* flipMode() */
+      } /* ModeToggle */
+
+      const modeToggle = new ModeToggle();
+    </script>
+
+    <!-- font -->
+    <style>
+      @font-face {
+        font-family: 'RIDIBatang';
+        src: url('/assets/img/favicons/RIDIBatang.otf') format('opentype'); /* OTF 파일의 경로를 지정합니다. */
+      }
+      @font-face {
+        font-family: 'TTLaundryGothicB';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff2');
+        font-weight: 700;
+        font-style: normal;
+      }
+    </style>
+
+    <!-- 이동시 여백, 폰트등 ,이미지에 호버 효과 추가 -->
+    <style>
+      #intro,
+      #skills,
+      #projects_pc_main,
+      #extra,
+      #education {
+        padding-top: 20px;
+      }
+
+      h1 {
+        font-family: 'Source Sans Pro';
+        color: rgba(0, 150, 255, 0.5);
+        font-weight: 900;
+        font-size: 36px;
+      }
+      li,
+      td,
+      th,
+      p,
+      span {
+        font-family: 'RIDIBatang';
+      }
+
+      .hoverable-image {
+        width: 130px;
+        height: 50px;
+        margin: 5px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .hoverable-image:hover {
+        transform: scale(1.2);
+        box-shadow: 0 0 20px rgba(0, 150, 255, 0.5);
+        transition: transform 0.3s ease;
+      }
+
+      .content div p a {
+        text-decoration: none;
+      }
+
+      .horizontal-line {
+        border-top: 2px solid rgba(0, 150, 255, 0.1);
+        margin: 20px 0;
+        border-radius: 1px;
+      }
+
+      @media print {
+        @page {
+          size: A4;
+          margin: 0;
+        }
+        .page {
+          page-break-after: always;
+        }
+
+        #sidebar{
+          position: static;
+          margin: 0;
+          transform: none !important; /* 효과 제거 */
+          -webkit-transform: none !important;
+          }
+        }
+
+        #sidebar .profile-wrapper {
+          margin-top: 0px;
+      }
+
+      }
+    </style>
+
+    <!-- 소개css -->
+    <style>
+      .nav-item {
+        font-size: 15px;
+      }
+
+      .image-with-text {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
+
+      .image-with-text img {
+        margin-right: 10px;
+      }
+
+      .image-with-text ul {
+        list-style-type: none; /* 리스트의 기본 마커 제거 */
+        padding: 0; /* 리스트의 내부 패딩 제거 */
+      }
+
+      .image-with-text ul li:before {
+        content: '-'; /* 각 항목 앞에 하이픈 추가 */
+        margin-right: 5px; /* 하이픈과 텍스트 사이 간격 설정 */
+      }
+
+      #url-list a {
+        color: #00008b;
+        font-weight: bold;
+        text-decoration: none;
+        position: relative;
+        display: inline-block;
+        border-radius: 5px;
+      }
+
+      #url-list a::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: rgba(60, 100, 244, 0.3);
+        border-radius: 5px;
+        z-index: -1;
+        transition: width 0.5s ease;
+      }
+
+      #url-list a:hover::before {
+        width: 100%;
+      }
+
+      .ul_margin {
+        margin-left: 10px;
+      }
+
+      .icon-zoom:hover {
+        color: #d2603a !important;
+        animation: scale-up 0.5s ease forwards, shake 0.5s ease infinite;
+      }
+
+      /* shake 애니메이션 키 프레임 */
+      @keyframes shake {
+        0% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-5px);
+        } /* 좌측으로 흔들림 */
+        50% {
+          transform: translateX(5px);
+        } /* 우측으로 흔들림 */
+        75% {
+          transform: translateX(-5px);
+        } /* 다시 좌측으로 흔들림 */
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes scale-up {
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(3);
+        }
+      }
+    </style>
+
+    <!-- 테이블 관련 -->
+    <style>
+      .no-side-borders,
+      .no-side-borders th,
+      .no-side-borders td {
+        border-left: 0;
+        border-right: 0;
+      }
+      .no-side-borders {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      .no-side-borders th,
+      .no-side-borders td {
+        border-bottom: 1px solid #ddd;
+        border: 1px solid #dddddd;
+        padding: 8px;
+        text-align: left;
+      }
+      .no-side-borders th {
+        background-color: #f2f2f2;
+        text-align: center;
+      }
+
+      .no-side-borders tr th:first-child,
+      .no-side-borders tr td:first-child {
+        border-left: none;
+      }
+
+      .no-side-borders tr th:last-child,
+      .no-side-borders tr td:last-child {
+        border-right: none;
+      }
+
+      .image-cell {
+        width: 600px;
+        height: 370px;
+        overflow: hidden;
+      }
+
+      .image-cell img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .image-main {
+        width: auto;
+        height: 400px;
+        overflow: hidden;
+      }
+
+      .image-main img {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 메인content -->
+    <div id="main-wrapper" class="d-flex justify-content-center">
+      <div class="container custom-container d-flex flex-column px-xxl-5">
+        <div class="row flex-grow-1">
+          <main style="width: 100%;" aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            <article class="px-2">
+              <!-- 소개 -->
+              <div class="page" id="intro">
+                <!-- 사이드바 -->
+                <aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
+                  <header class="profile-wrapper">
+                    <a href="/" id="avatar" class="rounded-circle"
+                      ><img
+                        src="/assets/img/favicons/oc2.png"
+                        width="112"
+                        height="112"
+                        alt="avatar"
+                        onerror="this.style.display='none'"
+                    ></a>
+
+                    <h1 class="site-title">
+                      <a href="/" style="font-family: 'TTLaundryGothicB';">오씨네</a>
+                    </h1>
+                    <p class="site-subtitle fst-italic mb-0">Web Developer</p>
+                  </header>
+                  <!-- .profile-wrapper -->
+
+                  <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
+                    <a
+                      style="margin-right: 20px"
+                      href="https://github.com/OC-s"
+                      aria-label="github"
+
+                      target="_blank"
+
+                      rel="noopener noreferrer"
+                    >
+                      <i class="fab fa-github fa-2x"></i>
+                    </a>
+
+                    <a
+                      href="javascript:location.href = 'mailto:' + ['dbsgh209','gmail.com'].join('@')"
+                      aria-label="email"
+                    >
+                      <i class="fas fa-envelope fa-2x"></i>
+                    </a>
+                  </div>
+
+                  <!-- 메뉴 -->
+                  <nav class="flex-column flex-grow-1 w-100 ps-0">
+                    <ul class="nav">
+                      <!-- 소개 섹션으로 이동 -->
+                      <li class="nav-item">
+                        <a href="#intro" class="nav-link">
+                          <i class="fa-solid fa-circle-user"></i>
+                          <span style="color:  rgba(0, 150, 255, 0.7);">소개</span>
+                        </a>
+                      </li>
+                      <!-- 교육 섹션으로 이동 -->
+                      <li class="nav-item">
+                        <a href="#education" class="nav-link">
+                          <i class="fa-solid fa-pen"></i>
+                          <span style="color: rgba(0, 150, 255, 0.7);">교육</span>
+                        </a>
+                      </li>
+
+                      <!-- 기술스택 섹션으로 이동 -->
+                      <li class="nav-item">
+                        <a href="#skills" class="nav-link">
+                          <i class="fa-solid fa-list"></i>
+                          <span style="color:  rgba(0, 150, 255, 0.7);">기술스택</span>
+                        </a>
+                      </li>
+
+                      <!-- 프로젝트 섹션으로 이동 -->
+                      <li class="nav-item">
+                        <a href="#projects_pc_main" class="nav-link">
+                          <i class="fa-solid fa-chalkboard"></i>
+                          <span style="color:  rgba(0, 150, 255, 0.7);">프로젝트</span>
+                        </a>
+                      </li>
+
+                      <!-- 기타 섹션으로 이동 -->
+                      <li class="nav-item">
+                        <a href="#extra" class="nav-link">
+                          <i class="fa-solid fa-mask"></i>
+                          <span style="color:  rgba(0, 150, 255, 0.7);">기타</span>
+                        </a>
+                      </li>
+                      <!-- .nav-item -->
+                    </ul>
+                  </nav>
+                </aside>
+
+                <div class="horizontal-line" />
+                <h1>Developer yunho</h1>
+                <div class="image-with-text">
+                  <img src="/assets/img/favicons/me.png" alt="my" style="width: 50%;">
+                  <ul id="url-list" style="margin-left: 50px">
+                    <li>이력서 웹사이트 : <a href="https://OC-s.github.io">https://OC-s.github.io</a></li>
+                    <li>이력서 PDF :<a href="/files/resume.pdf" _blank>https://OC-s.github.io/files/resume.pdf</a></li>
+                    <li>GitHub : <a href="https://github.com/OC-s">https://github.com/OC-s</a></li>
+                    <li>이메일 : <a href="mailto:dbsgh209@gmail.com">dbsgh209@gmail.com</a></li>
+                    <li>전화번호 : 010-7777-7516</li>
+                  </ul>
+                </div>
+
+                <div class="content">
+                  <p>
+                    안녕하세요. 어떤 문제든 집요하게 해결책을 찾는 개발자 오윤호입니다. 원하는 결과가 눈에 보일 때까지
+                    삽질하고 매달리며 결과를 얻어 냈을 때 큰 성취감을 느낍니다. 배움에 있어 두려움을 가지지 않아
+                    무엇이든 도전하면 결과를 얻을 수 있다는 믿음을 가지고 있습니다.
+                  </p>
+                  <p>
+                    P2E 붐크립토라는 웹게임을 통해 개발에 대해 공부하기 시작했습니다. 간단한 자동화 코딩이지만 원하는
+                    기능을 구현하여 표현할 수 있다는 것에 매력과 재미를 느껴서, 본업이었던 모션그래퍼 보다 이 분야에 더
+                    많은 시간을 투자하게 되었습니다. 결과적으로 붐크립토의 초기 투자 비용 대비 270%의 수익률을
+                    달성하였고 일일 채굴량 또한 30% 이상 증가하였습니다. 이에 개발에 대한 욕심이 생겨 직무 변경을
+                    결심하여 개발자가 되었습니다.
+                  </p>
+                  <p>
+                    신입의 역량은 비슷하다고 생각하며, 경험에 의해 업무에 적응 하는 속도는 다르다고 생각합니다. 대학시절
+                    메타스플로잇을 이용한 모의해킹 실습경험 및 백엔드팀에 근무한 경험이 있고 개발을 제작하는 과정과
+                    영상을 제작하는 과정이 공통된점이 많았습니다. 이러한 경험으로 다른 신입들에 비해 적응이 빠르다고
+                    자신할 수 있습니다.
+                  </p>
+                </div>
+                <p style="margin: 0; padding-top: 20px;">
+                  <a href="https://github.com/OC-s" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github fa-2x icon-zoom"></i>
+                  </a>
+                  이 깃헙 아이콘은 웹사이트와 이력서 둘 모두에서 클릭하실 수 있습니다.
+                </p>
+              </div>
+            </article>
+
+            <!-- 교육 -->
+            <article class="px-2">
+              <div class="page" id="education">
+                <div class="horizontal-line" />
+                <h1>EDUCATION</h1>
+                <div class="content">
+                  <h3>
+                    <span class="me-2" style="font-weight: bold;">🎓 경민대학교, IT경영 졸업(2014.03 ~ 2019.02)</span>
+                  </h3>
+                  <ul class="ul_margin">
+                    <li>🗺️ 위치: 경기도 의정부시 서부로 545</li>
+                    <li>📅 학업기간: 2014년 3월 입학 -> 군 휴학(2015~2017) -> 2018.03 ~ 2019.02 학업 재개 및 졸업.</li>
+
+                    <li>📚 수강 과목 (총 이수 학점: 81) :</li>
+                    <ul>
+                      <li>
+                        2014년
+                        <ul>
+                          <li>
+                            주요 과목: 회계원리, e-비즈니스개론, 통계학, 경영학원론, 생산관리, 품질경영, 사무행정,
+                            전산회계실 무, 인터넷창업실무, 웹시장조사, 데이터 베이스, 정보처리실습
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        2018년
+                        <ul>
+                          <li>
+                            주요 과목: 인사관리, IT기술동향분석, 암호이론, 컴퓨터네트워크, 사이트기획, 보안시스템분석,
+                            무역실 무, 캡스톤디자인, 프로그램개발과평가, PBL기반정보보안
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+
+                    <li>
+                      🏰 동아리 및 교육 활동:
+                      <ul>
+                        <li>정보보안 동아리(2018)</li>
+                        <li>실전화이트해커양성 기업실무 교육(2018.11 ~ 2018.12)</li>
+                      </ul>
+                    </li>
+                  </ul>
+
+                  <div class="horizontal-line" />
+                  <h3>
+                    <span class="me-2" style="font-weight: bold;"
+                      >🎓 중앙HTA 프로그래밍 교육과정 수료(2022.06~2023.02)</span
+                    >
+                  </h3>
+                  <ul class="ul_margin">
+                    <li>
+                      📝 교육명: 자바(Java)기반 컨테이너 애플리케이션 가상화를 통한 Cloud Office 구축 프로젝트 과정
+                    </li>
+                    <li>
+                      ✒️ 프로젝트 활동:
+                      <ul>
+                        <li>
+                          1️⃣ 프로젝트 명: PeopleCrew
+                          <a
+                            href="https://github.com/OC-s/peoplecrew"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style="margin-left: 5px"
+                          >
+                            <i class="fab fa-github fa-2x icon-zoom"></i>
+                          </a>
+                        </li>
+                        <span>
+                          ↗️ PeopleCrew는 사내 업무 및 자원관리를 효율적으로 하기 위한 웹 애플리케이션 서비스입니다.
+                          의견을 교환한 끝에, 다양한 기업에서 활용 가능한 서비스를 만들어보는 것이 귀중한 학습 기회가 될
+                          것이라는 결론에 도달하며 사내 인트라넷 구축을 주제로 선택하게 되었습니다.
+                        </span>
+
+                        <li>
+                          2️⃣ 프로젝트 명: YOMOZOMO
+                          <a
+                            href="https://github.com/OC-s/yomozomo-semi"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style="margin-left: 5px"
+                          >
+                            <i class="fab fa-github fa-2x icon-zoom"></i>
+                          </a>
+                        </li>
+                        <span>
+                          ↗️ YOMOZOMO는 고양이 용품 쇼핑몰 & 커뮤니티 웹 애플리케이션 서비스 입니다. 코로나와 여러 가지
+                          이유로 반려동물 수요가 점점 늘어 관련된 쇼핑몰을 개발하는 것이 상품 가치가 있을 것이라
+                          판단하여 고양이 용품 쇼핑몰 & 커뮤니티로 주제를 정하게 되었습니다.
+                        </span>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <!-- 기술스택 -->
+            <article class="px-2">
+              <div class="page" id="skills">
+                <div class="horizontal-line" />
+                <h1 data-toc-skip>SKILLS</h1>
+
+                <div class="content">
+                  <h3>
+                    <span class="me-2" style="font-weight: bold;">대표 기술</span>
+                  </h3>
+                  <ul class="ul_margin">
+                    <li>
+                      <a href="https://www.google.com/search?q=java" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white"
+                          class="hoverable-image"
+                        >
+                      </a>
+                      : 프로그래밍을 처음 시작한 언어이며 객체지향 프로그래밍과 Modern JAVA (Lambda, Stream, Optional)에
+                      대한 이해가 있고 간단한 WEB 어플리케이션 제작이 가능합니다.
+                    </li>
+                    <li>
+                      <a href="https://www.google.com/search?q=javascript" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"
+                          class="hoverable-image"
+                        >
+                      </a>
+                      : 대부분의 프로젝트에서 사용한 언어이며 간단한 프로그램 제작이 가능합니다.
+                    </li>
+                    <li>
+                      <a href="https://www.google.com/search?q=mysql" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white"
+                          class="hoverable-image"
+                        >
+                      </a>
+                      : 기본적인 SELECT, INSERT, UPDATE를 할 수 있으며, 간단한 조인을 이용하여 여러 테이블을 SELECT 할
+                      수 있습니다.
+                    </li>
+                  </ul>
+                  <div class="horizontal-line" />
+
+                  <h3>
+                    <span class="me-2" style="font-weight: bold;">익숙한 기술</span>
+                  </h3>
+                  <ul class="ul_margin">
+                    <li>
+                      <a href="https://www.google.com/search?q=html5" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=jquery" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=MyBatis" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/MyBatis-000000?style=for-the-badge&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=Oracle" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=spring" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=Spring Boot" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=Spring Security" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/Spring Security-6DB33F?style=for-the-badge&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=AJAX" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/AJAX-%230db7ed?style=for-the-badge&logo=ajax&logoColor=white "
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=git" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=github" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=Thymeleaf" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/Thymeleaf-%23005C0F.svg?style=for-the-badge&logo=Thymeleaf&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=JSP" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/JSP-%23FF9900.svg?style=for-the-badge&logo=JSP&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=Bootstrap" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                    </li>
+                  </ul>
+
+                  <div class="horizontal-line" />
+                  <h3>
+                    <span class="me-2" style="font-weight: bold;">경험해 본 기술</span>
+                  </h3>
+                  <ul class="ul_margin">
+                    <li>
+                      <a href="https://www.google.com/search?q=docker" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=redis" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=AWS" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=python" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=kubernetes" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=MUSTACHE" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/MUSTACHE-000000?style=for-the-badge&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=Spring Cloud" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/SpringCloud-6DB33F?style=for-the-badge&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=Linux" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=Swagger" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=jenkins" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/jenkins-%232C5263.svg?style=for-the-badge&logo=jenkins&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <!-- 프로젝트 -->
+            <article class="px-2">
+              <div class="page" id="projects_pc_main">
+                <div class="horizontal-line" />
+                <h1 data-toc-skip>PROJECTS<span style="font-size: 15px"> (대표 프로젝트 : PeopleCrew)</span></h1>
+
+                <div class="content">
+                  <h3>
+                    <span class="me-2" style="font-weight: bold;"
+                      >🧑‍🤝‍🧑 PeopleCrew (개발 기간: 2023.01.12 ~ 2023.02.10)</span
+                    >
+                  </h3>
+                  <ul class="ul_margin">
+                    <li>
+                      <a href="https://www.google.com/search?q=html5" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=java" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=javascript" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=mysql" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=jquery" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=MyBatis" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/MyBatis-000000?style=for-the-badge&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=Amazon RDS" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/Amazon RDS-F80000?style=for-the-badge&logo=Amazon RDS&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=Spring Boot" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=Spring Security" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/Spring Security-6DB33F?style=for-the-badge&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=AJAX" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/AJAX-%230db7ed?style=for-the-badge&logo=ajax&logoColor=white "
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=github" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=Eclipse" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/Eclipse-%23005C0F.svg?style=for-the-badge&logo=Eclipse&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=JSP" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/JSP-%23FF9900.svg?style=for-the-badge&logo=JSP&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=Bootstrap" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=ERDCloud" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/ERDCloud-%23121011.svg?style=for-the-badge&logo=ERDCloud&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                    </li>
+                    <li>사내 업무 관리를 위한 웹 애플리케이션 솔루션입니다.</li>
+                    <li>팀원: 5명</li>
+
+                    <li>담당 업무:</li>
+                    <ul>
+                      <li>로그인 / Spring Security, BCryptPasswordEncoder 암호화</li>
+                      <li>관리자 인사관리 (사원등록, 조회, 수정, 삭제, 검색) / Securiy Tag Library 권한체크</li>
+                      <li>403 권한 오류 커스텀 페이지 / exceptionHandling().AccessDeniedException</li>
+                      <li>급여 및 명세서 조회</li>
+                    </ul>
+                    <li>Learned :</li>
+                    <ul>
+                      <li>
+                        Spring Security가 제공하는 클래스 중 하나인 BCryptPasswordEncoder를 사용하여 비밀번호 암호화하는
+                        방법을 익힐 수 있었고 저장 시마다 해시 값이 변경되고 단방향성이기 때문에 복호화가 안된다는 것을
+                        알 수 있었다.
+                      </li>
+                      <li>
+                        단기간에 많은 기능을 구현해야 했기 때문에, 효율적인 협업 및 의사소통 능력을 기를 수 있었다.
+                      </li>
+                      <li>여러명의 사람과 협업해볼 수 있었고, Git & Notion을 통한 형상관리를 배울 수 있었다.</li>
+                    </ul>
+                    <li>Fix :</li>
+                    <ul>
+                      <li>Git-Flow를 사용하여 전략적으로 작업을 하지 못한 점</li>
+                      <li>공통 약속(네이밍, 라인규칙 등) 세세하게 정하지 못한 점</li>
+                      <li>JUnit 테스트 프레임워크를 적극 활용 못한 점</li>
+                      <li>Hard Delete를 사용하여 삭제된 데이터를 관리할 수 없었던 점</li>
+                    </ul>
+                    <li>
+                      Go to GitHub & Notion:
+                      <a
+                        href="https://github.com/OC-s/peoplecrew"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style="margin-left: 5px"
+                      >
+                        <i class="fab fa-github fa-2x icon-zoom"></i>
+                      </a>
+                      <a
+                        href="https://ppcrew.notion.site/People-Crew-56c13c47611d4d9b87592396d6a95d0c"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style="margin-left: 5px"
+                      >
+                        <i class="fab fa fa-2x icon-zoom ">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 15 15">
+                            <path fill="currentColor" d="M3.258 3.117c.42.341.577.315 1.366.262l7.433-.446c.158 0 .027-.157-.026-.183l-1.235-.893c-.236-.184-.551-.394-1.155-.341l-7.198.525c-.262.026-.315.157-.21.262zm.446 1.732v7.821c0 .42.21.578.683.552l8.17-.473c.472-.026.525-.315.525-.656V4.324c0-.34-.131-.525-.42-.499l-8.538.499c-.315.026-.42.184-.42.525m8.065.42c.052.236 0 .472-.237.499l-.394.078v5.775c-.341.183-.657.288-.92.288c-.42 0-.525-.131-.84-.525L6.803 7.342v3.911l.815.184s0 .472-.657.472l-1.812.105c-.053-.105 0-.367.184-.42l.472-.13V6.292L5.15 6.24c-.053-.236.078-.577.446-.604l1.944-.13L10.22 9.6V5.978l-.683-.079c-.053-.289.157-.499.42-.525zm-9.93-3.937L9.326.781c.919-.08 1.156-.026 1.733.394l2.39 1.68c.395.288.526.367.526.682v9.212c0 .578-.21.92-.946.971l-8.694.525c-.552.027-.815-.052-1.104-.42l-1.76-2.283c-.315-.42-.446-.735-.446-1.103V2.25c0-.472.21-.866.814-.918"/>
+                          </svg>
+                        </i>
+                      </a>
+                    </li>
+                  </ul>
+                  <table class="no-side-borders" border="1">
+                    <tr>
+                      <th>PeopleCrew - 메인화면</th>
+                    </tr>
+                    <tr>
+                      <td class="image-main">
+                        <img
+                          src="/assets/img/favicons/peoplecrew/대시보드.png"
+                          alt="대시보드"
+                          style="width: 100%;"
+                        >
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <br>
+
+              <div class="page" id="projects_pc_2page">
+                <div class="content">
+                  <table class="no-side-borders">
+                    <tr>
+                      <th colspan="2">담당업무 기능 요약 및 설명</th>
+                    </tr>
+                    <tr>
+                      <td
+                        style="text-align: center;"
+                      >
+                        상세화면
+                      </td>
+                      <td style="text-align: center;">기능설명</td>
+                    </tr>
+                    <tr>
+                      <td class="image-cell">
+                        <img src="/assets/img/favicons/peoplecrew/로그인.PNG" alt="로그인">
+                      </td>
+                      <td>
+                        <li>로그인 기능 (스프링 시큐리티)</li>
+                        <li>미입력 시 유효성 검사</li>
+                        <li>보안상 autocomplete 속성을 이용하여 자동완성 기능 OFF</li>
+                        <li>ID 또는 비밀번호 오류시 빨간색 박스로 오류 메시지 표시</li>
+                        <li>ID 또는 비밀번호 찾기</li>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="image-cell">
+                        <img src="/assets/img/favicons/peoplecrew/ID찾기.PNG" alt="ID찾기">
+                      </td>
+                      <td>
+                        <li>ID 찾기 (이름＆이메일)</li>
+                        <li>미입력 시 유효성 검사</li>
+                        <li>DB에 일치하는 값이 없을 시 오류 표시</li>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="image-cell">
+                        <img
+                          src="/assets/img/favicons/peoplecrew/임시비밀번호.PNG"
+                          alt="임시비밀번호"
+                        >
+                      </td>
+                      <td>
+                        <li>임시비밀번호 발급 (ID＆이메일)</li>
+                        <li>미입력 시 유효성 검사</li>
+                        <li>DB에 일치하는 값이 없을 시 오류 표시</li>
+                        <li>로그인 버튼 네비게이션</li>
+                        <li>
+                          네이버 메일서버 사용(SMTP 설정 및 빈등록) 하였고 랜덤 UUID 메서드를 이용하여 임시비밀번호 발급
+                        </li>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <br>
+              <div class="page" id="projects_pc_3page">
+                <div class="content">
+                  <table class="no-side-borders">
+                    <tr>
+                      <th colspan="2">담당업무 기능 요약 및 설명</th>
+                    </tr>
+                    <tr>
+                      <td
+                        style="text-align: center;"
+                      >
+                        상세화면
+                      </td>
+                      <td style="text-align: center;">기능설명</td>
+                    </tr>
+                    <tr>
+                      <td class="image-cell">
+                        <img src="/assets/img/favicons/peoplecrew/사원조회.PNG" alt="사원조회">
+                      </td>
+                      <td>
+                        <li>사원 조회 (사번, 이름, 직급, 부서)</li>
+                        <li>사원 수정, 삭제 버튼 네비게이션</li>
+                        <li>사원 리스트 페이징 처리 기능</li>
+                        <li>
+                          (인사관리 공용) 관리자의 권한이 필요하기 때문에 시큐리티 태그 라이브러리를 사용하여 권한 체크
+                          후 관리자만 접근 가능
+                        </li>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="image-cell">
+                        <img src="/assets/img/favicons/peoplecrew/사원등록.PNG" alt="사원등록">
+                      </td>
+                      <td>
+                        <li>사원 등록</li>
+                        <li>입력창마다 미입력 시 유효성 검사</li>
+                        <li>카카오 주소 API 연동</li>
+                        <li>전화번호 자동 – 하이픈 정규식</li>
+                        <li>직급 선택 시 급여/권한 자동 입력</li>
+                        <li>부서 선택 시 부서 번호 자동 입력</li>
+                        <li>
+                          비밀번호 등록 시 암호화된 비밀번호로 데이터베이스 저장 (스프링에서 제공하는
+                          BCryptPasswordEncoder 클래스 이용)
+                        </li>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="image-cell">
+                        <img src="/assets/img/favicons/peoplecrew/사원수정.PNG" alt="사원수정">
+                      </td>
+                      <td>
+                        <li>사원 수정</li>
+                        <li>카카오 주소 API 연동</li>
+                        <li>이미지 없을 시 기본 이미지 출력</li>
+                        <li>
+                          다른 이미지 첨부시 이미지 실시간 변경 (JavaScript DOM메서드로 요소를 찾고 이벤트 리스너 이용)
+                        </li>
+                        <li>
+                          비밀번호 수정 시 암호화된 비밀번호로 데이터베이스 저장 (스프링에서 제공하는
+                          BCryptPasswordEncoder 클래스 이용)
+                        </li>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <br>
+              <div class="page" id="projects_pc_4page">
+                <div class="content">
+                  <table class="no-side-borders">
+                    <tr>
+                      <th colspan="2">담당업무 기능 요약 및 설명</th>
+                    </tr>
+                    <tr>
+                      <td
+                        style="text-align: center;"
+                      >
+                        상세화면
+                      </td>
+                      <td style="text-align: center;">기능설명</td>
+                    </tr>
+                    <tr>
+                      <td class="image-cell">
+                        <img src="/assets/img/favicons/peoplecrew/사원급여.PNG" alt="사원급여">
+                      </td>
+                      <td>
+                        <li>사원 급여 조회 (사번, 이름, 부서)</li>
+                        <li>부서별 최고 급여 및 평균 급여차트</li>
+                        <li>직급별 최고 급여 및 평균 급여차트</li>
+                        <li>(공용) 차트 스타일 커스텀마이징</li>
+                        <li>급여 상세 조회 버튼 네비게이션</li>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="image-cell">
+                        <img
+                          src="/assets/img/favicons/peoplecrew/사원급여명세서.PNG"
+                          alt="사원급여명세서"
+                        >
+                      </td>
+                      <td>
+                        <li>급여 상세 조회 (모달)</li>
+                        <li>상세정보 자동 입력 (수정불가)</li>
+                        <li>급여 항목 계산 기능 (각 공제 항목 적용)</li>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="image-cell">
+                        <img src="/assets/img/favicons/peoplecrew/403.PNG" alt="403">
+                      </td>
+                      <td>
+                        <li>403 오류 페이지 (관리자 권한 없는 회원이 관리자 페이지 접속 시 뜨는 오류 페이지)</li>
+                        <li>이전 페이지 네비게이션 기능</li>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <br>
+
+              <div class="page" id="projects_yz_main">
+                <div class="horizontal-line" />
+                <div class="content">
+                  <h3>
+                    <span class="me-2" style="font-weight: bold;"
+                      >🐈 YOMOZOMO (개발 기간: 2022.11.07 ~ 2022.11.24)</span
+                    >
+                  </h3>
+                  <ul class="ul_margin">
+                    <li>
+                      <a href="https://www.google.com/search?q=html5" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=java" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=javascript" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=mysql" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=jquery" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=eXERD" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/eXERD-000000?style=for-the-badge=eXERD&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=Amazon RDS" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/Amazon RDS-F80000?style=for-the-badge&logo=Amazon RDS&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=AJAX" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/AJAX-%230db7ed?style=for-the-badge&logo=ajax&logoColor=white "
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=github" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=Eclipse" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/Eclipse-%23005C0F.svg?style=for-the-badge&logo=Eclipse&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=JSP" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/JSP-%23FF9900.svg?style=for-the-badge&logo=JSP&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                      <a href="https://www.google.com/search?q=Bootstrap" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logoColor=white"
+                          class="hoverable-image"
+                      ></a>
+                    </li>
+                    <li>고양이 용품 쇼핑몰 & 커뮤니티 웹 애플리케이션 서비스 입니다.</li>
+                    <li>팀원: 4명</li>
+
+                    <li>담당 업무:</li>
+                    <ul>
+                      <li>메인, 주문, 주문 완료 페이지</li>
+                      <li>관리자 페이지 (템플릿 정리와 대시보드 및 회원 등록,수정,삭제)</li>
+                    </ul>
+                    <li>Learned :</li>
+                    <ul>
+                      <li>프로젝트를 진행하며 HTML, CSS, JavaScript, JAVA 등 기본적인 웹 기술을 향상시킬 수 있었다.</li>
+                      <li>프로젝트 협업을 경험하여 협업 능력을 높일 수 있었다.</li>
+                      <li>
+                        여러 문제를 해결하는 과정을 통해 문제 해결 능력을 향상시키고 주도적인 학습을 통해 개발자로
+                        성장할 수 있었다.
+                      </li>
+                    </ul>
+                    <li>Fix :</li>
+                    <ul>
+                      <li>코드의 구조와 가독성 (적절한 주석 추가 등)</li>
+                      <li>UX/UI 개선</li>
+                      <li>테스트 및 디버깅을 못한 점</li>
+                      <li>작업 순서에 대해 체계적으로 계획하여 못한 점</li>
+                      <li>문서 형상관리를 못한 점</li>
+                    </ul>
+                    <li>
+                      Go to GitHub:
+                      <a
+                        href="https://github.com/OC-s/yomozomo-semi"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style="margin-left: 5px"
+                      >
+                        <i class="fab fa-github fa-2x icon-zoom"></i>
+                      </a>
+                    </li>
+                  </ul>
+                  <table class="no-side-borders" border="1">
+                    <tr>
+                      <th>YOMOZOMO - ERD</th>
+                    </tr>
+                    <tr>
+                      <td class="image-main">
+                        <img
+                          src="/assets/img/favicons/yomozomo/ERD.PNG"
+                          alt="ERD"
+                          style="width: 100%;"
+                        >
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <br>
+
+              <div class="page" id="projects_yz_2page">
+                <div class="content">
+                  <table class="no-side-borders">
+                    <tr>
+                      <th colspan="2">담당업무 기능 요약 및 설명</th>
+                    </tr>
+                    <tr>
+                      <td
+                        style="text-align: center;"
+                      >
+                        상세화면
+                      </td>
+                      <td style="text-align: center;">기능설명</td>
+                    </tr>
+                    <tr>
+                      <td class="image-cell">
+                        <img src="/assets/img/favicons/yomozomo/메인페이지01.png" alt="메인페이지01">
+                      </td>
+                      <td rowspan="3">
+                        <li>메인페이지 및 자랑게시판</li>
+                        <li>각종 버튼 네이게이션</li>
+                        <li>조회수, 할인율, 판매량등 내림차순으로 정렬</li>
+                        <li>배너 좌,우 이미지 슬라이더 적용</li>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="image-cell">
+                        <img src="/assets/img/favicons/yomozomo/메인페이지02.png" alt="메인페이지02">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="image-cell">
+                        <img src="/assets/img/favicons/yomozomo/자랑게시판.PNG" alt="자랑게시판">
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <br>
+
+              <div class="page" id="projects_yz_3page">
+                <div class="content">
+                  <table class="no-side-borders">
+                    <tr>
+                      <th colspan="2">담당업무 기능 요약 및 설명</th>
+                    </tr>
+                    <tr>
+                      <td
+                        style="text-align: center;"
+                      >
+                        상세화면
+                      </td>
+                      <td style="text-align: center;">기능설명</td>
+                    </tr>
+                    <tr>
+                      <td class="image-cell">
+                        <img src="/assets/img/favicons/yomozomo/주문페이지.png" alt="주문페이지">
+                      </td>
+                      <td>
+                        <li>주문페이지</li>
+                        <li>카카오 주소 API 연동</li>
+                        <li>주문자 정보 자동입력 및 수정가능</li>
+                        <li>로그인 상태에서만 접근가능</li>
+                        <li>배송지 정보 미입력 시 유효성 검사</li>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="image-cell">
+                        <img src="/assets/img/favicons/yomozomo/결제.PNG" alt="결제">
+                      </td>
+                      <td>
+                        <li>결제 (아임포트 API KG이니시스)</li>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="image-cell">
+                        <img src="/assets/img/favicons/yomozomo/주문완료.png" alt="주문완료">
+                      </td>
+                      <td>
+                        <li>주문 완료 페이지</li>
+                        <li>주문자 정보 자동입력 (수정불가)</li>
+                        <li>주문현황 및 쇼핑 버튼 네비게이션</li>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <br>
+
+              <div class="page" id="projects_yz_4page">
+                <div class="content">
+                  <table class="no-side-borders">
+                    <tr>
+                      <th colspan="2">담당업무 기능 요약 및 설명</th>
+                    </tr>
+                    <tr>
+                      <td
+                        style="text-align: center;"
+                      >
+                        상세화면
+                      </td>
+                      <td style="text-align: center;">기능설명</td>
+                    </tr>
+                    <tr>
+                      <td class="image-cell">
+                        <img
+                          src="/assets/img/favicons/yomozomo/관리자대시보드.PNG"
+                          alt="관리자대시보드"
+                        >
+                      </td>
+                      <td>
+                        <li>관리자 대시보드</li>
+                        <li>차트, 목록 커스텀마이징</li>
+                        <li>판매량, 회원수 리스트 표시</li>
+                        <li>주문 목록 정렬 (최신 주문 순으로 5개 표시)</li>
+                        <li>To Do List 목록 추가 기능, 체크박스 선택 시 완료 표시</li>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="image-cell">
+                        <img src="/assets/img/favicons/yomozomo/관리자등록.PNG" alt="관리자등록">
+                      </td>
+                      <td>
+                        <li>관리자 회원 목록 (등록)</li>
+                        <li>미입력 시 유효성 검사</li>
+                        <li>회원 목록 페이징 처리 기능 ( 페이지당 10명 제한)</li>
+                        <li>회원번호 오름차순으로 정렬</li>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="image-cell">
+                        <img src="/assets/img/favicons/yomozomo/관리자수정.PNG" alt="관리자수정">
+                      </td>
+                      <td>
+                        <li>관리자 회원 목록 (수정, 삭제)</li>
+                        <li>회원 목록 페이징 처리 기능 (한페이지 총 10명 제한)</li>
+                        <li>라디오 박스로 회원 선택후 수정 또는 삭제 기능</li>
+                        <li>수정 시 유효성 검사 기능</li>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </article>
+
+            <!-- 기타 -->
+            <article class="px-2">
+              <div class="page" id="extra">
+                <div class="horizontal-line" />
+                <h1 data-toc-skip>EXTRA</h1>
+
+                <div class="content">
+                  <h3>
+                    <span class="me-2" style="font-weight: bold;">💻 근무 경험</span>
+                  </h3>
+                  <ul class="ul_margin">
+                    <li><p>㈜프래프 백엔드1팀에서 3개월간 근무했어요.</p></li>
+                    <li>
+                      <p>
+                        Duruper 라는 인도 채용사이트를 유지보수와 추가개발을 하며 다국적 팀원간에 작업을 이해하고
+                        협력하는 방 법을 배웠어요. 이 시간 동안 프로젝트에 익숙해져, 주어진 시간보다 일찍 작업을 마치게
+                        되었어요.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        IBK 공동 채용박람회 프로젝트에서 뷰템플릿(Mustache > thymeleaf) 리팩토링 맡게 되었어요. 처음
+                        접하는 언어 였지만 열심히 공부하며 지식을 습득했어요. 이를 통해 프로젝트의 품질을 향상시키고
+                        유지보수성을 높일 수 있 었어요.
+                      </p>
+                    </li>
+                  </ul>
+
+                  <div class="horizontal-line" />
+                  <h3>
+                    <span class="me-2" style="font-weight: bold;">⚒️ 근성</span>
+                  </h3>
+                  <ul class="ul_margin">
+                    <li>
+                      <p>
+                        공익 시절 노동청에서의 근무는 저에게 끈기와 인내를 깨닫게 해주었어요. 2년 동안 정해진 시간에
+                        서류를 접수하였고 연말에 직원들과 함께 수십 년간 정리가 안된 서류를 정리하기로 했어요. 힘들고
+                        포기하고 싶은 순간이 무척 많았지만, 이러한 과정을 통해 서류를 찾는 시간이 대폭 줄어들었고,
+                        아무리 힘들어도 포기하지 않는 강인한 정신력을 길렀어요.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        정리가 완료된 후 포기한 직원들의 놀란 표정과 특별 포상 휴가를 받았을 때 성취감에 중독되어 목표를
+                        이루어내기 위해 매달리는 사람이 되었어요.
+                      </p>
+                    </li>
+                  </ul>
+
+                  <div class="horizontal-line" />
+                  <h3>
+                    <span class="me-2" style="font-weight: bold;">📡 인공지능</span>
+                  </h3>
+                  <ul class="ul_margin">
+                    <li><p>GhatGPT를 적극 활용하여 검색 시간을 많이 아끼고 있어요.</p></li>
+                    <li>
+                      <p>GhatGPT에게 문서화나 학습 및 개발 스킬 향상에 도움을 받고 있어요.</p>
+                    </li>
+                  </ul>
+
+                  <div class="horizontal-line" />
+                  <h3>
+                    <span class="me-2" style="font-weight: bold;">✈️ 취미활동</span>
+                  </h3>
+                  <ul class="ul_margin">
+                    <li>
+                      <a href="https://www.google.com/search?q=NETFLIX" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/NETFLIX-%23DD0031.svg?style=for-the-badge&logo=NETFLIX&logoColor=white"
+                          class="hoverable-image"
+                        >
+                      </a>
+
+                      <a href="https://www.google.com/search?q=PC조립" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/PC조립-%23FF9900.svg?style=for-the-badge&logo=amazon-PC조립&logoColor=white"
+                          class="hoverable-image"
+                        >
+                      </a>
+
+                      <a href="https://www.google.com/search?q=P2E" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/P2E-%230db7ed.svg?style=for-the-badge&logo=P2E&logoColor=white"
+                          class="hoverable-image"
+                        >
+                      </a>
+
+                      <a href="https://www.google.com/search?q=회기왕족발 보쌈" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/맛집탐방-3670A0?style=for-the-badge&logo=맛집&logoColor=ffdd54"
+                          class="hoverable-image"
+                        >
+                      </a>
+
+                      <a href="https://www.google.com/search?q=마라도" target="_blank">
+                        <img
+                          src="https://img.shields.io/badge/여행-%23326ce5.svg?style=for-the-badge&logo=여행&logoColor=white"
+                          class="hoverable-image"
+                        >
+                      </a>
+                    </li>
+                  </ul>
+
+                  <div class="horizontal-line" />
+                  <h3>
+                    <span class="me-2" style="font-weight: bold;">📬 CONTACT</span>
+                  </h3>
+                  <p>궁금하신 사항이 있으시면 아래 연락처 및 이메일로 편하게 문의해 주세요.</p>
+                  <ul id="url-list" class="ul_margin">
+                    <li>
+                      <p>
+                        이메일:
+                        <a href="mailto:dbsgh209@gmail.com">dbsgh209@gmail.com</a>
+                      </p>
+                    </li>
+                    <li><p>전화번호: 010-7777-7516</p></li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+          </main>
+        </div>
+
+        <!-- The Footer -->
+        <Footer style="margin-bottom: 130px; border-top-style: none;" />
+      </div>
+    </div>
+
+    <script>
+      function downloadPDF() {
+        window.print();
+      }
+    </script>
+  </body>
+</html>
